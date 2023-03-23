@@ -11,7 +11,18 @@ class GitCommand {
 
     //Command: git status
     status(){        
+        const new_changes = this.working_directory.new_changes;
+        let new_changes_count = Object.keys(new_changes).length; 
+        
+        let information = 'You have '+new_changes_count+' change/s.';
+        for (let i = 0; i < new_changes_count; i++) {
+            information += '\n'+Object.keys(new_changes)[i];
+        }
 
+        if (new_changes_count == 0) {
+            information = 'You have 0 change/s.\n';
+        }
+        return information;
     }
 
     //Command: git add <filename/file directory/wildcard> 
